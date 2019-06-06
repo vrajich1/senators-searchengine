@@ -1,24 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Route, Link} from 'react-micro-router';
+import Search from './Components/search'; 
+import Home from './Components/home';
+
+const URI = "https://www.govtrack.us/api/v2/role?current=true&role_type=senator"
+fetch(URI)
+    .then(res => res.json()
+    );
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Link to="/">Home</Link> {" "}
+            <Link to="/search">Search</Link>
+ 
+            <Route path="/" exact>
+            <Home/>
+            </Route>
+ 
+            <Route path="/search">
+            <Search/>
+            </Route>
     </div>
   );
 }
